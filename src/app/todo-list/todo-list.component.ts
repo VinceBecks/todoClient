@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {TODOS} from '../../assets/todo-mocks';
 
 @Component({
   selector: 'app-todo-list',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
+  todos = TODOS;
+
   constructor() { }
 
   ngOnInit() {
