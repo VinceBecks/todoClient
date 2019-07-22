@@ -4,7 +4,7 @@
   <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2"></div>
   <ul class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
     <li class = "list-group-item" *ngFor="let todo of todosToShow">
-      {{todo.title}}
+      <a routerLink="/todos/{{todo.todoId}}">{{todo.title}}</a>
     </li>
   </ul>
 </div>

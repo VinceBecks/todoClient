@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TodoService} from '../todo.service';
 import {Todo} from '../../domain/Todo';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-todo-list',
@@ -11,7 +12,8 @@ export class TodoListComponent implements OnInit {
   private todos: Todo[];
   private todosToShow: Todo[];
 
-  constructor(private todoService: TodoService) { }
+
+  constructor(private todoService: TodoService, private router: Router) { }
 
   ngOnInit() {
     this.todos = this.todoService.loadTodos();

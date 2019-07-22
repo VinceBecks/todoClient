@@ -5,7 +5,7 @@ export const TODOS: Todo [] = [
     todoId: 1,
     title: 'Clean up',
     description: 'bath, living room',
-    state: 'open'
+    state: 'done'
   },
   {
     todoId: 2,

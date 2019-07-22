@@ -1,0 +1,33 @@
+<div class="container">
+  <h2>Todo</h2>
+  <form [formGroup]="todoForm" (ngSubmit)="saveTodo(todoForm.value)">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Todo ID:</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>State</th>
+      </tr>
+      </thead>
+      <tbody *ngIf="!isEditing">
+      <tr>
+        <td>{{todo.todoId}}</td>
+        <td>{{todo.title}}</td>
+        <td>{{todo.description}}</td>
+        <td>{{todo.state}}</td>
+        <td><button (click)="editTodo()">Edit <i class="fa fa-edit"></i></button></td>
+      </tr>
+      </tbody>
+      <tbody *ngIf="isEditing">
+          <tr>
+            <td>{{todo.todoId}}</td>
+            <td><input type = "text" formControlName="title"></td>
+            <td><input type = "text" formControlName="description"></td>
+            <td>Done: <input type="checkbox" formControlName="state"> </td>
+            <td><button class = "button" type="submit" >Save</button><button class = "button" (click)="deleteTodo()">Delete</button></td>
+          </tr>
+      </tbody>
+    </table>
+  </form>
+</div>
