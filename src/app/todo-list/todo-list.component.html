@@ -1,12 +1,9 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<app-search-bar (searchRequest)="searchTodos($event)"></app-search-bar>
 
 <div class="row">
   <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2"></div>
   <ul class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
-    <li class = "list-group-item" *ngFor="let todo of todos">
+    <li class = "list-group-item" *ngFor="let todo of todosToShow">
       {{todo.title}}
     </li>
   </ul>

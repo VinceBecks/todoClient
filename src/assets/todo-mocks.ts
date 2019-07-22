@@ -1,4 +1,4 @@
-import {Todo} from '../app/domain/Todo';
+import {Todo} from '../domain/Todo';
 
 export const TODOS: Todo [] = [
   {
