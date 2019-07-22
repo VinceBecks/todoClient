@@ -47,6 +47,7 @@ export class TodoDetailsComponent implements OnInit {
     this.router.navigate(['/todo-list']);
   }
   deleteTodo() {
+    console.log('Delete todo');
     this.todoService.deleteTodo(this.todo);
   }
 }

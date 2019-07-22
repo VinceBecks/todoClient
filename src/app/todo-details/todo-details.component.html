@@ -19,13 +19,18 @@
         <td><button (click)="editTodo()">Edit <i class="fa fa-edit"></i></button></td>
       </tr>
       </tbody>
+      <!-- todo: Sinnvoll einen zweiten tbody einzubauen, oder lieber eigene Komponente bzw. 2 unterschiedliche div Blocks mit eigenen Tabellen??-->
       <tbody *ngIf="isEditing">
           <tr>
             <td>{{todo.todoId}}</td>
             <td><input type = "text" formControlName="title"></td>
             <td><input type = "text" formControlName="description"></td>
-            <td>Done: <input type="checkbox" formControlName="state"> </td>
-            <td><button class = "button" type="submit" >Save</button><button class = "button" (click)="deleteTodo()">Delete</button></td>
+            <td>
+              <input type="radio" formControlName="state" value="open">Open<br>
+              <input type="radio" formControlName="state" value="in_progress">In Progress<br>
+              <input type="radio" formControlName="state" value="done">Done
+            </td>
+            <td><button class = "button" type="submit" >Save</button><button class = "button" type ="submit">Delete</button></td>
           </tr>
       </tbody>
     </table>

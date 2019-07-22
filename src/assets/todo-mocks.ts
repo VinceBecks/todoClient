@@ -5,18 +5,18 @@ export const TODOS: Todo [] = [
     todoId: 1,
     title: 'Clean up',
     description: 'bath, living room',
-    state: 'done'
+    state: 'DONE'
   },
   {
     todoId: 2,
     title: 'Buy in ',
     description: 'milk, bread, honey',
-    state: 'open'
+    state: 'IN_PROGRESS'
   },
   {
-    todoId: 1,
+    todoId: 3,
     title: 'Beat someone',
     description: 'Like lukas',
-    state: 'open'
+    state: 'OPEN'
   },
 ];
