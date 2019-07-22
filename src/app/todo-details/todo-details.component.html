@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Todo</h2>
-  <form [formGroup]="todoForm" (ngSubmit)="saveTodo(todoForm.value)">
+  <form [formGroup]="todoForm">
     <table class="table">
       <thead>
       <tr>
@@ -26,11 +26,14 @@
             <td><input type = "text" formControlName="title"></td>
             <td><input type = "text" formControlName="description"></td>
             <td>
-              <input type="radio" formControlName="state" value="open">Open<br>
-              <input type="radio" formControlName="state" value="in_progress">In Progress<br>
-              <input type="radio" formControlName="state" value="done">Done
+              <input type="radio" formControlName="state" value="OPEN">Open<br>
+              <input type="radio" formControlName="state" value="IN_PROGRESS">In Progress<br>
+              <input type="radio" formControlName="state" value="DONE">Done
             </td>
-            <td><button class = "button" type="submit" >Save</button><button class = "button" type ="submit">Delete</button></td>
+            <td>
+              <button class = "button" type="submit" (click)="saveTodo(todoForm.value)">Save</button>
+              <button class = "button" type ="submit" (click)="deleteTodo()">Delete</button>
+            </td>
           </tr>
       </tbody>
     </table>

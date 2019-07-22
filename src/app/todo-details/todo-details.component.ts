@@ -3,6 +3,7 @@ import {Todo} from '../../domain/Todo';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TodoService} from '../todo.service';
 import {FormBuilder} from '@angular/forms';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-todo-details',
@@ -24,7 +25,7 @@ export class TodoDetailsComponent implements OnInit {
     this.todoForm = this.formBuilder.group({
       title: this.todo.title,
       description: this.todo.description,
-      state: this.todo.state
+      state: this.todo.state,
     });
   }
   editTodo() {
@@ -37,17 +38,14 @@ export class TodoDetailsComponent implements OnInit {
       description: formData.description,
       state: formData.state
     };
-    if (changedTodo.state === true) {
-      changedTodo.state = 'done';
-    } else {
-      changedTodo.state = 'open';
-    }
-    this.todoService.updateTodo(this.todo.todoId, changedTodo);
-    // todo: muss dies in ein Promise? --> Request könnte länger dauern, als Navigation
-    this.router.navigate(['/todo-list']);
+    this.todoService.updateTodo(this.todo.todoId, changedTodo).toPromise().then(() => {
+      this.router.navigate(['/todo-list']);
+    });
   }
   deleteTodo() {
     console.log('Delete todo');
-    this.todoService.deleteTodo(this.todo);
+    this.todoService.deleteTodo(this.todo).toPromise().then(() => {
+      this.router.navigate(['/todo-list']);
+    });
   }
 }

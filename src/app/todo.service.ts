@@ -1,40 +1,43 @@
 import { Injectable } from '@angular/core';
 import { TODOS } from '../assets/todo-mocks';
 import {Todo} from '../domain/Todo';
+import { HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
-  allTodos = TODOS;
+  allTodos: Todo[];
+  private BASE_URL = 'http://localhost:8080/todo-service-1.0-SNAPSHOT/api';
 
-  constructor() { }
+  constructor(private client: HttpClient) { }
 
   loadTodos() {
+    console.log('Request to load all todos');
+    this.allTodos = [];
+    this.client.get<Todo[]>(this.BASE_URL + '/todos').subscribe( value => {
+      for (let todo of value) {
+        this.allTodos.push(new Todo(todo.todoId, todo.title, todo.description, todo.state));
+      }
+    });
     return this.allTodos;
   }
+
   getTodoWithId(id) {
-    // todo: Macht es Sinn hier einen neuen Request an die Schnittstelle /todos/{id} zu senden?
-    for (const todo of this.allTodos) {
+    for (let todo of this.allTodos) {
       if (todo.todoId == id) {
         return todo;
       }
     }
-    console.log('Found no todo with id ' + id);
   }
+
   updateTodo(todoId, todo) {
-    console.log('Request to update todo with id ' + todoId);
-    this.allTodos.forEach(todoIt => {
-      if (todoIt.todoId == todoId) {
-        console.log('Found toto');
-        todoIt.title = todo.title;
-        todoIt.description = todo.description;
-        todoIt.state = todo.state;
-      }
-    });
-    // todo: Macht es Sinn hier alle Todos nochmal neu zu laden?
+    return this.client.put<Todo>(this.BASE_URL + '/todos/' + todoId, todo);
   }
   deleteTodo(todo: Todo) {
-    // todo: Request to delete the todo
+    console.log('Request to delete todo with id ' + todo.todoId);
+    return this.client.delete(this.BASE_URL + '/todos/' + todo.todoId);
+
   }
 }
