@@ -1,15 +1,17 @@
 <app-search-bar (searchRequest)="searchTodos($event)"></app-search-bar>
 <div class = "row">
-  <a routerLink="['/newTodo']"><button>New Todo</button></a>
+  <button (click)="toggleNewTodoForm()">New Todo</button>
 </div>
+
+<app-new-todo *ngIf="isNewTodoFormVisible" (tweetCreatedRequest)="tweetCreatedRequest()"></app-new-todo>
 
 <br>
 
 <div class = "row">
-  <button class="col-xl-3 col-lg-3 col-md-3 col-sm-3" (click)="setTodoType('allTodos')">All todos</button>
-  <button class="col-xl-3 col-lg-3 col-md-3 col-sm-3" (click)="setTodoType('openTodos')">Open todos</button>
-  <button class="col-xl-3 col-lg-3 col-md-3 col-sm-3" (click)="setTodoType('inProgressTodos')">In progress todos</button>
-  <button class="col-xl-3 col-lg-3 col-md-3 col-sm-3" (click)="setTodoType('doneTodos')">Done todos</button>
+  <button class="col-xl-3 col-lg-3 col-md-3 col-sm-3" (click)="setStateToShow('allTodos')">All todos</button>
+  <button class="col-xl-3 col-lg-3 col-md-3 col-sm-3" (click)="setStateToShow('openTodos')">Open todos</button>
+  <button class="col-xl-3 col-lg-3 col-md-3 col-sm-3" (click)="setStateToShow('inProgressTodos')">In progress todos</button>
+  <button class="col-xl-3 col-lg-3 col-md-3 col-sm-3" (click)="setStateToShow('doneTodos')">Done todos</button>
 </div>
 
 <br>

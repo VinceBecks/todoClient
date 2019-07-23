@@ -1,0 +1,11 @@
+<div class = "row">
+  <form [formGroup]="newTodoForm" (ngSubmit)="createTodo(newTodoForm.value)">
+    <label>Title: </label>
+    <input type = "text" formControlName="title">
+    <br>
+    <label>Description: </label>
+    <input type = "text" formControlName="description">
+    <br>
+    <button type="submit">Save</button>
+  </form>
+</div>

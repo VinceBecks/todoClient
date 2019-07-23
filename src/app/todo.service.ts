@@ -16,12 +16,13 @@ export class TodoService {
   loadTodos() {
     console.log('Request to load all todos');
     this.allTodos = [];
-    this.client.get<Todo[]>(this.BASE_URL + '/todos').subscribe( value => {
+    const todoObservable = this.client.get<Todo[]>(this.BASE_URL + '/todos');
+    todoObservable.subscribe( value => {
       for (let todo of value) {
         this.allTodos.push(new Todo(todo.todoId, todo.title, todo.description, todo.state));
       }
     });
-    return this.allTodos;
+    return todoObservable;
   }
 
   getTodoWithId(id) {
@@ -31,6 +32,10 @@ export class TodoService {
       }
     }
   }
+  createNewTodo(todo) {
+    console.log('Request to create a new todo');
+    return this.client.post<Todo>(this.BASE_URL + '/todos', todo);
+  }
 
   updateTodo(todoId, todo) {
     return this.client.put<Todo>(this.BASE_URL + '/todos/' + todoId, todo);
@@ -38,6 +43,5 @@ export class TodoService {
   deleteTodo(todo: Todo) {
     console.log('Request to delete todo with id ' + todo.todoId);
     return this.client.delete(this.BASE_URL + '/todos/' + todo.todoId);
-
   }
 }

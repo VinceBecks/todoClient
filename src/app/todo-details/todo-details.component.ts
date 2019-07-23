@@ -3,7 +3,6 @@ import {Todo} from '../../domain/Todo';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TodoService} from '../todo.service';
 import {FormBuilder} from '@angular/forms';
-import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-todo-details',
