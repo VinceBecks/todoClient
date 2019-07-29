@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { TODOS } from '../assets/todo-mocks';
 import {Todo} from '../domain/Todo';
 import { HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

@@ -19,7 +19,7 @@
         <td><button (click)="editTodo()">Edit <i class="fa fa-edit"></i></button></td>
       </tr>
       </tbody>
-      <!-- todo: Sinnvoll einen zweiten tbody einzubauen, oder lieber eigene Komponente bzw. 2 unterschiedliche div Blocks mit eigenen Tabellen??-->
+      <!-- todo: Ist es sinnvoll so wie jetzt einen zweiten tbody einzubauen? Oder lieber eine eigene Tabelle oder sogar eine eigene Komponente für den Fall, dass es sich um den "update" Fall handelt?-->
       <tbody *ngIf="isEditing">
           <tr>
             <td>{{todo.todoId}}</td>
